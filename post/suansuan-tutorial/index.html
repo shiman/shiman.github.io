@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    酸酸（shado-thocs）使用指南 | Shiman G
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://www.shiman.me/post/suansuan-tutorial/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://www.shiman.me/index.xml" rel="alternate" type="application/rss+xml" title="Shiman G" />
+  <link href="https://www.shiman.me/index.xml" rel="feed" type="application/rss+xml" title="Shiman G" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://www.shiman.me/">Shiman G</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/guoshim" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/shiman" target="_blank">GitHub</a></li>
+          <li><a href="https://www.shiman.me/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>酸酸（shado-thocs）使用指南</h1>
+      <div class="meta">
+        Aug 5, 2018 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>不知不觉回国已经半年多。经历了三家公司，终于总结出来了自己的一份”酸酸“使用经验。主要包括一下几个部分：</p>
+
+<ul>
+<li>如何搭建酸酸服务</li>
+<li>服务器如何选择</li>
+<li>如何在位于国内的远程开发机上使用</li>
+</ul>
+
+<h2 id="什么是酸酸">什么是酸酸</h2>
+
+<p>酸酸，aka ss, shado-thocs, ****，一个不存在的软件，一个不存在的网站。</p>
+
+<p>它可以通过 <code>pip install</code> 来安装，它的服务端程序是 <code>ssserver</code>，客户端程序叫做 <code>sslocal</code>。</p>
+
+<p>没错，它就是酸酸。酸酸的 <code>socks5</code> 代理，使用加密算法让网络通讯难以被监听，因此可以用来做梯子。</p>
+
+<h2 id="如何搭建自己的酸酸梯">如何搭建自己的酸酸梯</h2>
+
+<h3 id="服务端">服务端</h3>
+
+<p>酸酸梯的搭建其实很简单。</p>
+
+<p>首先，你需要有一台位于境外的，可以正常 <code>ssh</code> 访问的服务器。在这台服务器上，用以下命令安装好酸酸服务端：</p>
+
+<pre><code class="language-bash">pip install shadowsocks
+</code></pre>
+
+<p>然后，建立自己的配置文件，名字任意，比如 <code>~/kexue.json</code>：</p>
+
+<pre><code class="language-json">{
+    &quot;server&quot;:&quot;my_server_ip&quot;,
+    &quot;server_port&quot;:8388,
+    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:1080,
+    &quot;password&quot;:&quot;mypassword&quot;,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,
+    &quot;fast_open&quot;: true
+}
+</code></pre>
+
+<p>最后，启动一个 tmux session，在这个 session 里面启动 <code>ssserver -c ~/kexue.json</code>，然后 <code>C-b d</code> detach session，即可。</p>
+
+<h3 id="客户端">客户端</h3>
+
+<p>有了这样一个远程服务，在本地就可以通过各种软件花式爬梯。</p>
+
+<ul>
+<li>Windows: <a href="https://github.com/shadowsocks/shadowsocks-windows">link</a></li>
+<li>Mac OS: <a href="https://github.com/shadowsocks/ShadowsocksX-NG">link</a></li>
+<li>Linux Desktop: <a href="https://github.com/shadowsocks/shadowsocks-qt5">link</a></li>
+</ul>
+
+<p>安装方式根据平台，参照 github 上的 wiki 和 README 进行。不同平台的配置也都大同小异。
+其中，Windows 和 Mac OS 下最简单，安装，新建链接，输入你的远程机器的 IP，端口，密码，加密方式，就直接可以访问那些不存在的网站了。</p>
+
+<p>Linux 下的配置要多一步，因为 Shadowsocks-QT 该程序本身并不会影响系统的代理配置，也不会自动加载可以区分国内外网站的 <code>gfwlist</code>。
+所以需要用户手动配置一下。这个配置也不麻烦：</p>
+
+<ol>
+<li><code>pip install genpac</code></li>
+
+<li><p>在启动了 shadowsocks-qt 的前提下：</p>
+
+<pre><code class="language-bash">genpac --pac-proxy &quot;SOCKS5 127.0.0.1:1080&quot; \
+    --gfwlist-proxy=&quot;SOCKS5 127.0.0.1:1080&quot; \
+    --output=autoproxy.pac
+</code></pre></li>
+
+<li><p>在浏览器中，比如 Firefox，找到 proxy 配置，选择使用 &ldquo;Automatic Proxy Configuration URL&rdquo;，输入：<code>file://path/to/your/pac/file.pac</code>，即可。</p></li>
+</ol>
+
+<h2 id="酸酸服务器哪家强">酸酸服务器哪家强</h2>
+
+<p>上文说道，酸酸梯需要一个境外的远程服务器。这种服务器也被称为是境外 VPS。有这么多供应商，应该选择哪一家？</p>
+
+<p>这里强烈推荐 Vultr。倒不是因为多便宜，而是比较方便，尤其是它按照用量来计费。如果一个 instance 被自己搞挂了，那就再开一个。
+这一点很重要。本人半年时间开关了不下5个 instance，有一个月甚至开了3个。不是我享受这个过程，而是老大哥实力很强，
+如果发现了你的梯子，会立刻封掉你这个梯子的端口，这样你的梯子就废了。而你就不得不销毁这个梯子，然后重建一个 instance，再在
+上面搭一个新梯子。</p>
+
+<p>另一方面，Vultr 提供了世界各地的机房，包括欧洲，日本，新加坡，北美等。我们大陆用户，讲道理应该是香港或者日本最快，
+实际上也的确如此。但因为大家都使用这些近水楼台，老大哥早就察觉到了，因此香港和日本的机房基本上没有一个是能用的。
+欧洲的速度比较慢，不推荐。剩下的就是北美和新加坡了。新加坡的速度大概在 300ms 左右。北美大部分机房也差不多，但西雅图
+地区的机房最快，可低至 150ms。但同样，神通广大的老大哥也盯着呢，西雅图的机房可用率不高。</p>
+
+<p>我开始用的新加坡机房，被封了两次以后转到了 Silicon Valley，又被封了以后转去了 Los Angeles，再次被封。最后
+抱着试试看的态度，在 Seattle 建了一个 instance，连不上，再建个新的，还是连不上。试了四五个以后，终于运气好，
+得到了一个能用的 IP。速度也确实很快。建议大家首选西雅图，多试几次，肯定能碰上一个能用的。</p>
+
+<p>另外嘱咐大家，一旦梯子搭好以后，没什么事儿不要 ssh 进去。也不要在上边搭个人博客什么的。Big brother is watching.
+如果你哪天发现自己的服务器 ssh 进不去了，那9成是挂了。</p>
+
+<h2 id="开发机上如何使用酸酸">开发机上如何使用酸酸</h2>
+
+<p>程序员通常需要和 github 等境外网站打交道。许多机器学习的资源和模型都是存在 aws 上的，好多时候也被 GFW 搞的痛不欲生。
+如果只是网页端访问，倒也简单，开启全局代理即可。但如果你在远程开发机上，想让命令行里的命令爬梯子，怎么办？</p>
+
+<h3 id="1-开发机爬梯">1 开发机爬梯</h3>
+
+<p>在开发机上，<code>pip install shadowsocks</code>， tmux session 里面启动 <code>sslocal -c kexue.config</code>，打开次元壁。</p>
+
+<h3 id="2-proxychain">2 Proxychain</h3>
+
+<p>在开发机上，安装神器 <code>proxychains</code>。然后建立配置文件：<code>~/.proxychains/proxychains.conf</code>，在里面写入：</p>
+
+<pre><code>strict_chain
+proxy_dns 
+remote_dns_subnet 224
+tcp_read_time_out 15000
+tcp_connect_time_out 8000
+localnet 127.0.0.0/255.0.0.0
+quiet_mode
+
+[ProxyList]
+socks5  127.0.0.1 1080
+</code></pre>
+
+<p>注意最后一行。这里只是典型的配置。根据自己的情况调整。</p>
+
+<p>Proxychains 会把 <code>socks5</code> 代理转化成一个 HTTP 代理。</p>
+
+<p>然后，在你的命令前加入 <code>proxychains</code> 字符，你的命令就会上梯子了。比如：</p>
+
+<pre><code>$ curl ip.gs
+
+Current IP / 当前 IP: hide_and_seek
+ISP / 运营商:  ChinaTelecom
+City / 城市: Hangzhou Zhejiang
+Country / 国家: China
+IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
+Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans 
+
+  /\_/\
+=( °w° )=
+  )   (  //
+ (__ __)//
+</code></pre>
+
+<p>加入 <code>proxychains</code> 以后：</p>
+
+<pre><code>$ proxychains curl ip.gs
+
+[proxychains] config file found: /home/shim/.proxychains/proxychains.conf
+[proxychains] preloading /usr/lib/libproxychains4.so
+Current IP / 当前 IP: seek_and_hide
+ISP / 运营商:  choopa.com
+City / 城市: Seattle Washington
+Country / 国家: United States
+IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
+Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans 
+
+  /\_/\
+=( °w° )=
+  )   (  //
+ (__ __)//
+</code></pre>
+
+<p>我个人喜欢为<code>proxychains</code>加一个优美的 alias：<code>alias fuck=proxychains</code>。。</p>
+
+<p>今后，如果你 <code>git clone xxx</code> 速度太慢，就可以 <code>fuck git clone xxx</code>。[SmirkFace]</p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'shiman-blog';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="https://www.shiman.me/post/blog-set-up-and-custom-domain-name/" rel="prev">用Github做博客</a></span>
+    
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+

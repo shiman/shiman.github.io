@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  
+  <meta charset="UTF-8">
+  <title>
+    用Github做博客 | Shiman G
+  </title>
+
+
+  
+  <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1,initial-scale=1">
+
+  
+  <link rel="canonical" href="https://www.shiman.me/post/blog-set-up-and-custom-domain-name/"/>
+
+  
+  <link rel="stylesheet" href="/css/sanitize.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <link rel="stylesheet" href="/css/highlight_monokai.css">
+  <link rel="stylesheet" href="/css/theme.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  
+  
+  <link href="https://www.shiman.me/index.xml" rel="alternate" type="application/rss+xml" title="Shiman G" />
+  <link href="https://www.shiman.me/index.xml" rel="feed" type="application/rss+xml" title="Shiman G" />
+
+  
+  
+
+
+</head>
+
+
+
+<body>
+<div class="container">
+
+  
+  <header role="banner">
+    <div class="row gutters">
+      <div id="site-title" class="col span_6">
+        <h1><a href="https://www.shiman.me/">Shiman G</a></h1>
+        
+      </div>
+      <div id="social" class="col span_6">
+        <ul>
+          <li><a href="https://twitter.com/guoshim" target="_blank">Twitter</a></li>
+          
+          <li><a href="https://github.com/shiman" target="_blank">GitHub</a></li>
+          <li><a href="https://www.shiman.me/index.xml" type="application/rss+xml" target="_blank">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+
+  
+  <main id="single" role="main">
+    <div class="article-header">
+      <h1>用Github做博客</h1>
+      <div class="meta">
+        Jun 16, 2018 &nbsp;
+        
+      </div>
+    </div>
+    <article>
+      
+
+<p>用Github Pages做博客已经是个很常见的事情了。
+这里主要分享一下如何设置个人域名和HTTPS。</p>
+
+<h2 id="为什么用github">为什么用Github</h2>
+
+<p>科学上网是在国内的必备技能。
+为了科学上网，不少人都有自己的VPS，用来搭建梯子。
+比如说我。
+而既然有了VPS，为什么还要用Github呢？
+还是因为干扰太多。
+个人随便搞一个VPS，选的都是很便宜的套餐，没有备份，没有保护。
+设置一个WordPress不难，但很难保证不会哪天被一堆垃圾评论爆掉，
+变成最大线上赌场。
+同时，国内的老大哥也不是吃素的，VPS如果不够低调，IP也分分钟被封。
+而Github就基本不存在这两个问题了。
+被微软收购的那一天，曾出现了破纪录的大规模DDOS攻击，都被企业级的防护措施挡住了。
+至于老大哥这方面，目前只是速度慢而已，基本上没有封杀的情况发生。
+当然也有例外哈，比如今年（18年）上半年的北大事件，
+有人把事情原委用Github Issue的形式传播，
+老大哥发现以后就把这个页面墙掉了。
+不过这也仅仅是这一个页面而已，其他的不受影响。</p>
+
+<p>关于如何建立一个Peronsal Github Page，这里就不细说了。
+有很多静态博客框架，里面都提到了如何部署。</p>
+
+<h2 id="域名设置">域名设置</h2>
+
+<p>我是从Godaddy买的域名，还算是划算吧。
+从这里买域名不需要备案，比较省心。
+具体的设置过程分为两步。</p>
+
+<h3 id="第一步-域名提供商dns转发">第一步 域名提供商DNS转发</h3>
+
+<p>首先，登陆Godaddy，账号管理，DNS设置页面。</p>
+
+<p>以我自己的域名为例，shiman.me，
+为了确保 shiman.me 和 www.shiman.me 都可以工作，
+需要设置两种转发。</p>
+
+<p>第一种，Type <code>CNAME</code>，对应于<code>www</code>域名，按照以下内容设置即可：</p>
+
+<pre><code>Type: CNAME
+Name: @
+Value: shiman.github.io
+TTL: 1 Hour
+</code></pre>
+
+<p>如果已经有了Name为<code>@</code>的<code>CNAME</code>规则，直接在修改即可。
+没有的话就创建一个。</p>
+
+<p>第二种，Type <code>A</code>，对应于 apex 域名，不带<code>www</code>的。
+这里需要参考一下<a href="https://help.github.com/articles/setting-up-an-apex-domain/#configuring-a-records-with-your-dns-provider">官方说明</a>。
+官方会给出若干IP地址。
+我设置的时候，官方说明给出了四个：</p>
+
+<pre><code>185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+</code></pre>
+
+<p>为这四条地址逐一创建Type <code>A</code>转发规则即可。
+比如第一条，内容如下：</p>
+
+<pre><code>Type: A
+Name: @
+Value: 185.199.108.153
+TTL: 1 Hour
+</code></pre>
+
+<h3 id="第二步-在github上设置">第二步 在Github上设置</h3>
+
+<p>这一步就很简单了。Github做了很好的集成。
+打开你的Github Pages Repo，
+比如github.com/yourname/yourname.github.io，
+进入设置页面，
+在最下方，&rdquo;Danger Zone&rdquo;的上面，有个&rdquo;Custom domain&rdquo;的面板。
+填上自己的域名，如 www.shiman.me ，即可。
+别忘了勾选下面的&rdquo;Enable HTTPS&rdquo;选项。
+有时候这个多选框可能不可用，这种情况下等几分钟，再来看看。</p>
+
+<p>域名设置的过程虽然不难，但各方响应不是很及时。
+有任何问题，比如设置好了但是打不开，
+或HTTPS页面提示证书不安全/不可用，
+八成是还没有更新。
+喝一杯咖啡，回来就好了。</p>
+
+      
+      
+      
+    </article>
+    
+ <aside><div id="disqus_thread"></div></aside>
+
+<script type="text/javascript">
+     
+    var disqus_shortname = 'shiman-blog';
+
+     
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+  </main>
+  
+  <nav class="pagination-single">
+    
+      <span class="previous">&larr; <a href="https://www.shiman.me/post/my-first-post/" rel="prev">My First Post</a></span>
+    
+    
+      <span class="next"><a href="https://www.shiman.me/post/suansuan-tutorial/" rel="next">酸酸（shado-thocs）使用指南</a> &rarr;</span>
+    
+  </nav>
+
+
+  
+  <footer role="contentinfo">
+    <div style="text-align:center;">
+      
+      
+    </div>
+  </footer>
+
+
+</div>
+
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+</body>
+</html>
+
