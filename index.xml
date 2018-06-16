@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shiman G</title>
+    <link>shiman.me/</link>
+    <description>Recent content on Shiman G</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 14 Jun 2018 15:19:15 +0800</lastBuildDate>
+    
+	<atom:link href="shiman.me/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My First Post</title>
+      <link>shiman.me/post/my-first-post/</link>
+      <pubDate>Thu, 14 Jun 2018 15:19:15 +0800</pubDate>
+      
+      <guid>shiman.me/post/my-first-post/</guid>
+      <description>A good post a day.</description>
+    </item>
+    
+  </channel>
+</rss>
