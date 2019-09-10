@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Manjaro Gnome 配置 - Shiman G</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Shiman Guo" /><meta name="description" content="折腾过很多不同的桌面环境和不同的操作系统。 最值得折腾的其实是 i3 和 xmonad，很酷炫。有几个月甚至稳定用于生产。 直到后来我爱上了 Emacs 的快捷键。" /><meta name="keywords" content="Shiman Guo, NLP" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.59.0 with theme even" />
+
+
+<link rel="canonical" href="http://www.shiman.me/post/manjaro-setup/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Manjaro Gnome 配置" />
+<meta property="og:description" content="折腾过很多不同的桌面环境和不同的操作系统。 最值得折腾的其实是 i3 和 xmonad，很酷炫。有几个月甚至稳定用于生产。 直到后来我爱上了 Emacs 的快捷键。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.shiman.me/post/manjaro-setup/" />
+<meta property="article:published_time" content="2019-10-29T21:03:57+08:00" />
+<meta property="article:modified_time" content="2019-10-29T21:03:57+08:00" />
+<meta itemprop="name" content="Manjaro Gnome 配置">
+<meta itemprop="description" content="折腾过很多不同的桌面环境和不同的操作系统。 最值得折腾的其实是 i3 和 xmonad，很酷炫。有几个月甚至稳定用于生产。 直到后来我爱上了 Emacs 的快捷键。">
+
+
+<meta itemprop="datePublished" content="2019-10-29T21:03:57&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-29T21:03:57&#43;08:00" />
+<meta itemprop="wordCount" content="962">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Manjaro Gnome 配置"/>
+<meta name="twitter:description" content="折腾过很多不同的桌面环境和不同的操作系统。 最值得折腾的其实是 i3 和 xmonad，很酷炫。有几个月甚至稳定用于生产。 直到后来我爱上了 Emacs 的快捷键。"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Shiman G</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Shiman G</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Manjaro Gnome 配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-10-29 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#软件源">软件源</a></li>
+<li><a href="#gfw">GFW</a></li>
+<li><a href="#输入法">输入法</a></li>
+<li><a href="#外观">外观</a></li>
+<li><a href="#其他">其他</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<p>折腾过很多不同的桌面环境和不同的操作系统。
+最值得折腾的其实是 i3 和 xmonad，很酷炫。有几个月甚至稳定用于生产。
+直到后来我爱上了 Emacs 的快捷键。Tiling WM 与 Emacs 争抢 Alt 键使用权，搞得我自己也凌乱不堪。
+最终返璞归真，Gnome 还是最符合日常使用的。嗯，还有 Windows。</p>
+
+<h2 id="软件源">软件源</h2>
+
+<p>首先替换为国内源：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pacman-mirrors -GB testing -c China</code></pre></td></tr></table>
+</div>
+</div>
+<p>等一段时间，会弹出一个小窗口，让你勾选最终要加入哪个。</p>
+
+<p>然后，启动 AUR。直接操作图形界面：</p>
+
+<p><img src="/images/manjaro-setup/add-remove-software.png" alt="Add/Remove Software" /></p>
+
+<p><img src="/images/manjaro-setup/enable-aur.png" alt="Enable AUR" /></p>
+
+<p>启用以后，还要安装 <code>yaourt</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">pacman -S yaourt</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="gfw">GFW</h2>
+
+<p>Linux 下可以用的 SSR 软件是 <a href="https://aur.archlinux.org/packages/electron-ssr/"><code>electron-ssr</code></a>。
+用 yaourt 安装好以后，添加订阅即可。与其他平台下的 SSR 软件大同小异。</p>
+
+<p>但我遇到了问题，这个软件貌似本身并不能控制 gnome 的 proxy 设置。
+所以，只能自己再手动运行一次 genpac，生成代理文件，然后在 Settings -&gt; Network 里面手动设置。</p>
+
+<p>生成 pac 代理文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先安装 genpac</span>
+sudo pip3 install -U pip
+pip3 install genpac --user
+
+<span class="c1"># 生成文件</span>
+genpac --pac-proxy <span class="s2">&#34;SOCKS5 127.0.0.1:1080&#34;</span> <span class="se">\
+</span><span class="se"></span>    --gfwlist-proxy<span class="o">=</span><span class="s2">&#34;SOCKS5 127.0.0.1:1080&#34;</span> <span class="se">\
+</span><span class="se"></span>    --gfwlist-url<span class="o">=</span>https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt <span class="se">\
+</span><span class="se"></span>    --output<span class="o">=</span><span class="s2">&#34;autoproxy.pac&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>然后，在 Settings -&gt; Network -&gt; Proxy 里面选择 Automatic，地址填入： <code>file:///home/yourname/path/to/autoproxy.pac</code>。</p>
+
+<p>不过，有可能后续的版本已经解决了这个问题。我再次重启以后，手动设置的 pac 文件地址就不见了，变成了这样：</p>
+
+<p><img src="/images/manjaro-setup/gfw-network-settings.png" alt="Network Proxy" /></p>
+
+<p>地址是： <code>http://127.0.0.1:2333/proxy.pac</code></p>
+
+<p>不管你是如何启动代理的，都可以通过右上方的 Electron 标志来选择&rdquo;PAC代理&rdquo;或者&rdquo;全局代理&rdquo;。管用的。
+总之，这时你终于可以打开 Google 了。</p>
+
+<p>最后，安装 <code>proxychains4</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S proxychains</code></pre></td></tr></table>
+</div>
+</div>
+<p>然后配置 <code>/etc/proxychains.conf</code>。</p>
+
+<h2 id="输入法">输入法</h2>
+
+<p>曾经输入法里面唯一能打的就是搜狗输入法。
+然而搜狗输入法在 linux 下问题实在太多了。
+现在，gnome 自带的框架是 ibus，干脆放弃了搜狗，选择了次优的方案： Rime 输入法，又称小狼毫。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S ibus-rime</code></pre></td></tr></table>
+</div>
+</div>
+<p>然后进入 Settings -&gt; Region &amp; Language -&gt; Input Sources，点击加号，添加 Rime 即可。</p>
+
+<p>最后进入配置 Rime 的阶段。</p>
+
+<p>建立文件 <code>~/.config/ibus/rime/default.custom.yaml</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">patch<span class="p">:</span><span class="w">
+</span><span class="w">    </span>schema_list<span class="p">:</span><span class="w">
+</span><span class="w">        </span>-<span class="w"> </span>schema<span class="p">:</span><span class="w"> </span>luna_pinyin_simp</code></pre></td></tr></table>
+</div>
+</div>
+<p>这样就变成了简体拼音。用以下命令重启一下 ibus-daemon 即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ibus-daemon -drx</code></pre></td></tr></table>
+</div>
+</div>
+<p>如果希望后选词横向排列，再建立文件： <code>~/.config/ibus/rime/build/ibus_rime.yaml</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml">style<span class="p">:</span><span class="w">
+</span><span class="w">    </span>horizontal<span class="p">:</span><span class="w"> </span><span class="kc">true</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>以前的 <code>ibus-setup</code> 都不能用了。估计是要渐渐 deprecate 了。</p>
+
+<h2 id="外观">外观</h2>
+
+<p>Gnome-Terminal 可以用 Gogh 来方便地添加 Theme：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">yaourt -S gogh-git</code></pre></td></tr></table>
+</div>
+</div>
+<p>字体用 Fira-Code：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">sudo pacman -S ttf-fira-code</code></pre></td></tr></table>
+</div>
+</div>
+<p>至于全局的 Theme，我觉得这个 <a href="https://www.gnome-look.org/p/1267246/">Nordic Polar</a> 就很不错。</p>
+
+<h2 id="其他">其他</h2>
+
+<p>keyboard repeat rate 在 Settings -&gt; Universal Access 里面。</p>
+
+<p>Remap Capslock 的设置需要打开另一个软件 Tweaks，找 Keyboard &amp; Mouse -&gt; Keyboard -&gt; Additional Layout Options.</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Shiman Guo</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-10-29
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/mac-style-keybindings-with-ahk/">
+            <span class="next-text nav-default">Windows 中的全局 Emacs 快捷键</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    (function() {
+      
+      
+      if (window.location.hostname === 'localhost') return;
+
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      var disqus_shortname = 'shiman-blog';
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:guoshim@gmail.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://www.linkedin.com/in/shiman-guo-0858707a/" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="https://github.com/shiman" class="iconfont icon-github" title="github"></a>
+      <a href="https://www.zhihu.com/people/guoshim" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="http://www.shiman.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Shiman Guo</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

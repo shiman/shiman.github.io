@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Shiman G</title>
@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Shiman G</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 01 Sep 2018 17:20:03 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 29 Oct 2019 21:03:57 +0800</lastBuildDate>
     
 	<atom:link href="http://www.shiman.me/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Manjaro Gnome 配置</title>
+      <link>http://www.shiman.me/post/manjaro-setup/</link>
+      <pubDate>Tue, 29 Oct 2019 21:03:57 +0800</pubDate>
+      
+      <guid>http://www.shiman.me/post/manjaro-setup/</guid>
+      <description>折腾过很多不同的桌面环境和不同的操作系统。 最值得折腾的其实是 i3 和 xmonad，很酷炫。有几个月甚至稳定用于生产。 直到后来我爱上了 Emacs 的快捷键。</description>
+    </item>
+    
+    <item>
+      <title>Windows 中的全局 Emacs 快捷键</title>
+      <link>http://www.shiman.me/post/mac-style-keybindings-with-ahk/</link>
+      <pubDate>Wed, 16 Oct 2019 15:05:20 +0800</pubDate>
+      
+      <guid>http://www.shiman.me/post/mac-style-keybindings-with-ahk/</guid>
+      <description>我喜欢用 Emacs，其中最让我觉得顺手的功能就是控制光标的那几个快捷键。 把键盘上的 CapsLock 映射为 Control，这样小拇指按起来方便，然后用 C-a, C-b, C-n,</description>
+    </item>
     
     <item>
       <title>情商和“会说话”</title>

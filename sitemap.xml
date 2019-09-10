@@ -2,15 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.shiman.me/about/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.shiman.me/post/manjaro-setup/</loc>
+    <lastmod>2019-10-29T21:03:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://www.shiman.me/post/</loc>
-    <lastmod>2018-09-01T17:20:03+08:00</lastmod>
+    <lastmod>2019-10-29T21:03:57+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>http://www.shiman.me/</loc>
-    <lastmod>2018-09-01T17:20:03+08:00</lastmod>
+    <lastmod>2019-10-29T21:03:57+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.shiman.me/post/mac-style-keybindings-with-ahk/</loc>
+    <lastmod>2019-10-16T15:05:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
